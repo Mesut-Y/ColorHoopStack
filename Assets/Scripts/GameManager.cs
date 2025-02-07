@@ -27,14 +27,24 @@ public class GameManager : MonoBehaviour
                     if (selectedObject != null && selectedStand != hit.collider.gameObject)
                     { // çember hedef bir yere gönderilecek
                         Stand _stand = hit.collider.GetComponent<Stand>(); //yeni seçilen stand
-                        selectedStand.GetComponent<Stand>().ChangingSocket(selectedObject); 
+                        
+                        if (_stand._hoops.Count != 4 && _stand._hoops.Count != 0)
+                        {
+                            selectedStand.GetComponent<Stand>().ChangingSocket(selectedObject);
+                            _cember.HareketEt("pozisyondegistir", hit.collider.gameObject, _stand.GetProperSocket(), _stand.targetPoint);
+                            _stand.emptySocket++;
+                            _stand._hoops.Add(selectedObject);
+                            selectedObject = null; //yeni çember taşıma işlemi için 
+                            selectedStand = null;
 
-                        _cember.HareketEt("pozisyondegistir", hit.collider.gameObject, _stand.GetProperSocket(), _stand.targetPoint);
-                        _stand.emptySocket++;
-                        _stand._hoops.Add(selectedObject);
+                        } else
+                        {
+                            _cember.HareketEt("soketegerigit");
+                            selectedStand = null;
+                            selectedObject = null;
+                        }
 
-                        selectedObject = null; //yeni çember taşıma işlemi için 
-                        selectedStand = null;
+                        
                     }
                     else if( selectedStand == hit.collider.gameObject)
                     {
