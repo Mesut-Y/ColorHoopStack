@@ -36,7 +36,7 @@ public class Hoop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ( secildi)
+        if ( secildi )
         {
             transform.position = Vector3.Lerp(transform.position, hareketPozisyonu.transform.position, .2f); //sliding A -> B
             if (Vector3.Distance(transform.position, hareketPozisyonu.transform.position) < .10) //is object in target?

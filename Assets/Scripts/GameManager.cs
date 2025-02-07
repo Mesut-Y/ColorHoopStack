@@ -26,12 +26,13 @@ public class GameManager : MonoBehaviour
 
                     if (selectedObject != null && selectedStand != hit.collider.gameObject)
                     { // çember hedef bir yere gönderilecek
-
+                        Stand _stand = hit.collider.GetComponent<Stand>(); //yeni seçilen stand
+                        selectedStand.GetComponent<Stand>().ChangingSocket(selectedObject);
                     }
                     else
-                    {
+                    {   
                         Stand _stand = hit.collider.GetComponent<Stand>();
-                        selectedObject = _stand.GetLastHook();
+                        selectedObject = _stand.GetLastHoop();
                         _cember = selectedObject.GetComponent<Hoop>();
                         isMove = true;
 
