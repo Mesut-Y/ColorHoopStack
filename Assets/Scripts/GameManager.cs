@@ -36,6 +36,12 @@ public class GameManager : MonoBehaviour
                         selectedObject = null; //yeni çember taşıma işlemi için 
                         selectedStand = null;
                     }
+                    else if( selectedStand == hit.collider.gameObject)
+                    {
+                        _cember.HareketEt("soketegerigit");
+                        selectedStand = null;
+                        selectedObject = null; 
+                    }
                     else
                     {   
                         Stand _stand = hit.collider.GetComponent<Stand>();

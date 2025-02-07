@@ -27,11 +27,8 @@ public class Hoop : MonoBehaviour
                 hareketPozisyonu = gidilecekObje;
                 posDegistir = true;
                 break;
-            case "soketeotur":
-
-                break;
             case "soketegerigit":
-
+                soketGeriGit = true;
                 break;
         }
     }
@@ -70,6 +67,17 @@ public class Hoop : MonoBehaviour
                 {
                     _aitOlduguStand.GetComponent<Stand>()._hoops[^2].GetComponent<Hoop>().hareketEdebilirmi = false;
                 }
+                _gameManager.isMove = false;
+            }
+        }
+
+        if (soketGeriGit)
+        {
+            transform.position = Vector3.Lerp(transform.position, _aitOlduguCemberSoketi.transform.position, .2f); //sliding A -> B
+            if (Vector3.Distance(transform.position, _aitOlduguCemberSoketi.transform.position) < .10) //is object in target?
+            {
+                transform.position = _aitOlduguCemberSoketi.transform.position;
+                soketGeriGit = false;
                 _gameManager.isMove = false;
             }
         }
