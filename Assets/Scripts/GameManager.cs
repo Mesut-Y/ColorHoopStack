@@ -28,9 +28,9 @@ public class GameManager : MonoBehaviour
                     { // çember hedef bir yere gönderilecek
                         Stand _stand = hit.collider.GetComponent<Stand>(); //yeni seçilen stand
 
-                        if (_stand._hoops.Count != 4)
+                        if (_stand._hoops.Count != 4 && _stand._hoops.Count != 0)   //stand dolu veya boş kontrolü
                         {
-                            if (_cember.renk == _stand._hoops[^1].GetComponent<Hoop>().renk)
+                            if (_cember.renk == _stand._hoops[^1].GetComponent<Hoop>().renk) //çember renkleri eşit mi kontrolü
                             {
                                 selectedStand.GetComponent<Stand>().ChangingSocket(selectedObject);
                                 _cember.HareketEt("pozisyondegistir", hit.collider.gameObject, _stand.GetProperSocket(), _stand.targetPoint);
@@ -46,14 +46,17 @@ public class GameManager : MonoBehaviour
                                 selectedObject = null;
                             }
                         }
-                        else
+                        else if (_stand._hoops.Count == 0) //stand boşsa çember yer değiştirebilir.
                         {
-                            _cember.HareketEt("soketegerigit");
+                            selectedStand.GetComponent<Stand>().ChangingSocket(selectedObject);
+                            _cember.HareketEt("pozisyondegistir", hit.collider.gameObject, _stand.GetProperSocket(), _stand.targetPoint);
+                            _stand.emptySocket++;
+                            _stand._hoops.Add(selectedObject);
+                            selectedObject = null; //yeni çember taşıma işlemi için 
                             selectedStand = null;
-                            selectedObject = null;
-                        } 
+                        }
                     }
-                    else if( selectedStand == hit.collider.gameObject)
+                    else if(selectedStand == hit.collider.gameObject)
                     {
                         _cember.HareketEt("soketegerigit");
                         selectedStand = null;
