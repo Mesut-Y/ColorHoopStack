@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
                                 _cember.HareketEt("pozisyondegistir", hit.collider.gameObject, _stand.GetProperSocket(), _stand.targetPoint);
                                 _stand.emptySocket++;
                                 _stand._hoops.Add(selectedObject);
+                                _stand.CheckHoops(); //stand çemberi 4 oldu mu
                                 selectedObject = null; //yeni çember taşıma işlemi için 
                                 selectedStand = null;
                             }
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
                             _cember.HareketEt("pozisyondegistir", hit.collider.gameObject, _stand.GetProperSocket(), _stand.targetPoint);
                             _stand.emptySocket++;
                             _stand._hoops.Add(selectedObject);
+                            _stand.CheckHoops();
                             selectedObject = null; //yeni çember taşıma işlemi için 
                             selectedStand = null;
                         }
