@@ -30,22 +30,28 @@ public class GameManager : MonoBehaviour
 
                         if (_stand._hoops.Count != 4)
                         {
-                            selectedStand.GetComponent<Stand>().ChangingSocket(selectedObject);
-                            _cember.HareketEt("pozisyondegistir", hit.collider.gameObject, _stand.GetProperSocket(), _stand.targetPoint);
-                            _stand.emptySocket++;
-                            _stand._hoops.Add(selectedObject);
-                            selectedObject = null; //yeni çember taşıma işlemi için 
-                            selectedStand = null;
-
+                            if (_cember.renk == _stand._hoops[^1].GetComponent<Hoop>().renk)
+                            {
+                                selectedStand.GetComponent<Stand>().ChangingSocket(selectedObject);
+                                _cember.HareketEt("pozisyondegistir", hit.collider.gameObject, _stand.GetProperSocket(), _stand.targetPoint);
+                                _stand.emptySocket++;
+                                _stand._hoops.Add(selectedObject);
+                                selectedObject = null; //yeni çember taşıma işlemi için 
+                                selectedStand = null;
+                            }
+                            else
+                            {
+                                _cember.HareketEt("soketegerigit");
+                                selectedStand = null;
+                                selectedObject = null;
+                            }
                         }
                         else
                         {
                             _cember.HareketEt("soketegerigit");
                             selectedStand = null;
                             selectedObject = null;
-                        }
-
-                        
+                        } 
                     }
                     else if( selectedStand == hit.collider.gameObject)
                     {

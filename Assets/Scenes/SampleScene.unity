@@ -2397,7 +2397,7 @@ MonoBehaviour:
   _aitOlduguStand: {fileID: 358017660}
   _aitOlduguCemberSoketi: {fileID: 2012137764}
   hareketEdebilirmi: 1
-  renk: red
+  renk: purple
   _gameManager: {fileID: 2035490233}
 --- !u!23 &1525053599
 MeshRenderer:
