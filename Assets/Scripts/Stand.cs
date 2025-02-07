@@ -52,6 +52,7 @@ public class Stand : MonoBehaviour
             if (completedHoops == 4)
             {
                 _GameManager.StandCompleted();
+                completedStand();
                 Debug.Log("Tamamlandı.");
             }
             else
@@ -59,6 +60,18 @@ public class Stand : MonoBehaviour
                 Debug.Log("Tamamlandı.");
                 completedHoops = 0;
             }
+        }
+    }
+
+    void completedStand()
+    {
+        foreach (var item in _hoops)
+        {
+            item.GetComponent<Hoop>().hareketEdebilirmi = false;
+            Color32 color = item.GetComponent<MeshRenderer>().material.GetColor("_BaseColor"); //URP/Lit için BaseColor parametresi
+            color.a = 100;
+            item.GetComponent<MeshRenderer>().material.color = color; // SetColor("_BaseColor",color);
+            gameObject.tag = "completedstand";
         }
     }
 }
