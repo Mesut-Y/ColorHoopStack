@@ -6341,7 +6341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMove: 0
-  targetStandCount: 0
+  targetStandCount: 5
 --- !u!4 &2035490234
 Transform:
   m_ObjectHideFlags: 0

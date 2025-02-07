@@ -51,6 +51,7 @@ public class Stand : MonoBehaviour
             }
             if (completedHoops == 4)
             {
+                _GameManager.StandCompleted();
                 Debug.Log("Tamamlandı.");
             }
             else

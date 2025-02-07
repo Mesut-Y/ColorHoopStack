@@ -1,4 +1,5 @@
-﻿using Unity.Multiplayer.Center.Common;
+﻿using System;
+using Unity.Multiplayer.Center.Common;
 using UnityEngine;
 using UnityEngineInternal;
 
@@ -9,7 +10,7 @@ public class GameManager : MonoBehaviour
     Hoop _cember;
     public bool isMove;
 
-    //they are initialized for after
+
     public int targetStandCount;
     int completedStandCount;
 
@@ -80,6 +81,15 @@ public class GameManager : MonoBehaviour
 
                 }
             }
+        }
+    }
+
+    public void StandCompleted()
+    {
+        completedStandCount++;
+        if (targetStandCount == completedStandCount)
+        {
+            Debug.Log("KAZANIDIN"); //kazandın paneli için tetik.
         }
     }
 }
