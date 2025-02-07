@@ -5,7 +5,7 @@ using UnityEngineInternal;
 public class GameManager : MonoBehaviour
 {
     GameObject selectedObject;
-    GameObject selectedPlatform;
+    GameObject selectedStand;
     Hoop _cember;
     public bool isMove;
 
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
                 {
                     //Debug.Log("Standa tıklandı.");
 
-                    if (selectedObject != null && selectedPlatform != hit.collider.gameObject)
+                    if (selectedObject != null && selectedStand != hit.collider.gameObject)
                     { // çember hedef bir yere gönderilecek
 
                     }
@@ -34,6 +34,12 @@ public class GameManager : MonoBehaviour
                         selectedObject = _stand.GetLastHook();
                         _cember = selectedObject.GetComponent<Hoop>();
                         isMove = true;
+
+                        if (_cember.hareketEdebilirmi)
+                        {
+                            _cember.HareketEt("secim", null, null, _cember._aitOlduguStand.GetComponent<Stand>().targetPoint);
+                            selectedStand = _cember._aitOlduguStand;
+                        }
                     }
 
                 }
