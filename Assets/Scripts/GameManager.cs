@@ -1,6 +1,7 @@
 ﻿using System;
 using Unity.Multiplayer.Center.Common;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngineInternal;
 
 public class GameManager : MonoBehaviour
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     GameObject selectedStand;
     Hoop _cember;
     public bool isMove;
+    public AudioSource[] sounds;
 
 
     public int targetStandCount;
@@ -40,12 +42,14 @@ public class GameManager : MonoBehaviour
                                 _stand.CheckHoops(); //stand çemberi 4 oldu mu
                                 selectedObject = null; //yeni çember taşıma işlemi için 
                                 selectedStand = null;
+                                sounds[0].Play();
                             }
                             else
                             {
                                 _cember.HareketEt("soketegerigit");
                                 selectedStand = null;
                                 selectedObject = null;
+                                sounds[1].Play();
                             }
                         }
                         else if (_stand._hoops.Count == 0) //stand boşsa çember yer değiştirebilir.
@@ -57,13 +61,15 @@ public class GameManager : MonoBehaviour
                             _stand.CheckHoops();
                             selectedObject = null; //yeni çember taşıma işlemi için 
                             selectedStand = null;
+                            sounds[0].Play();
                         }
                     }
                     else if(selectedStand == hit.collider.gameObject)
                     {
                         _cember.HareketEt("soketegerigit");
                         selectedStand = null;
-                        selectedObject = null; 
+                        selectedObject = null;
+                        sounds[1].Play();
                     }
                     else
                     {   
@@ -90,6 +96,14 @@ public class GameManager : MonoBehaviour
         if (targetStandCount == completedStandCount)
         {
             Debug.Log("KAZANIDIN"); //kazandın paneli için tetik.
+            sounds[2].Play();
+            Invoke("NextScene", 3);
         }
     }
+
+    private void NextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
 }
