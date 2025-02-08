@@ -10,7 +10,8 @@ public class Stand : MonoBehaviour
     public List<GameObject> _hoops = new(); //Standaki soketteki halkalar
     int completedHoops;
 
-    [SerializeField] private GameManager _GameManager;
+    [SerializeField] 
+    private GameManager _GameManager;
 
     public GameObject GetLastHoop()
     {
