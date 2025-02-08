@@ -16,6 +16,14 @@ public class GameManager : MonoBehaviour
     public int targetStandCount;
     int completedStandCount;
 
+    [SerializeField]
+    private GameObject vfx;
+
+    private void Start()
+    {
+        vfx.SetActive(false);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -97,6 +105,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("KAZANIDIN"); //kazandın paneli için tetik.
             sounds[2].Play();
+            vfx.SetActive(true);
             Invoke("NextScene", 3);
         }
     }
